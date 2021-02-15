@@ -1,5 +1,5 @@
 ﻿
-namespace BubbleSort
+namespace SortingProgram
 {
     partial class Form1
     {
