@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace SortingProgram
+namespace SortingProgram.Classes
 {
     static class Sorting
     {
+        // NestedClass fordi dette er en special class lavet til retunering af alle metoderne i Sorting classen
         public class SortingResult
         {
             // Disse variabler holder styr på hvor mange cycles/checks vi laver, 
@@ -25,9 +28,16 @@ namespace SortingProgram
 
         public static SortingResult BubbleSort(int[] _unsortedArr)
         {
+            Files file = new Files();
+
             SortingResult result = new SortingResult();
             result.time = Stopwatch.StartNew();
 
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Interval = 200;
+            timer.Start();
+            timer.Elapsed += (sender, e) => OnTimer_Tick(sender, e, result, file);
+            
             // Dette nestede for loop sørger for at vi kører det hele igennem, hvis der kun var et for loop ville der kun foregå en iteration med modifikationer
             for (int j = 0; j < _unsortedArr.Length; j++)
             {
@@ -48,9 +58,25 @@ namespace SortingProgram
                 }
             }
 
+            timer.Stop();
             result.time.Stop();
+            file.SaveFile();
             result.sortedArr = _unsortedArr;
             return result;
+        }
+
+        public static void OnTimer_Tick(object sender, EventArgs e, SortingResult _result, Files _file)
+        {
+            _file.WriteNewLine($"{_result.time.ElapsedMilliseconds};{_result.checks};{_result.modifications}");
+        } 
+
+        public static int Factorial(int n)
+        {
+            if (n == 1) return 1;
+            else
+            {
+                return n * Factorial(n - 1);
+            }
         }
     }
 }

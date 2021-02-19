@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MetroFramework;
 using MetroFramework.Forms;
+using SortingProgram.Classes;
 
 namespace SortingProgram
 {
@@ -36,7 +37,7 @@ namespace SortingProgram
             }
 
             Sorting.SortingResult sorted = Sorting.BubbleSort(input);
-            
+
             // Stop stopuret når vi er ude af det nestede for loop
 
             // Fyld vores sorterede listbox op
