@@ -24,6 +24,11 @@ namespace SortingProgram.Classes
 
             // Til sidst har vi det sorterede array
             public int[] sortedArr { get; set; }
+
+            public SortingResult()
+            {
+                this.time = Stopwatch.StartNew();
+            }
         }
 
         public static SortingResult BubbleSort(int[] _unsortedArr)
@@ -31,7 +36,6 @@ namespace SortingProgram.Classes
             Files file = new Files();
 
             SortingResult result = new SortingResult();
-            result.time = Stopwatch.StartNew();
 
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Interval = 200;
@@ -65,18 +69,85 @@ namespace SortingProgram.Classes
             return result;
         }
 
+        public static SortingResult MergeSort(int[] _unsortedArr)
+        {
+            SortingResult result = new SortingResult();
+            result.sortedArr = split(_unsortedArr);
+            result.time.Stop();
+            return result;
+
+
+            int[] split(int[] _unsplitArray)
+            {
+                if (_unsplitArray.Length <= 1) return _unsplitArray; // Hvis vi modtager et array som har en længde der er mindre end 1 er der ikke noget at sortere
+
+                // Med take funktionen kan vi tage de første elementer og ignorere resten
+                int[] left = _unsplitArray.Take(_unsplitArray.Length / 2).ToArray();
+                // Med skip funktionen kan vi tage de sidste elementer og ignorere starten
+                int[] right = _unsplitArray.Skip(_unsplitArray.Length / 2).ToArray();
+
+                // Vi kalder på merge som sorterer vores array
+                return merge(left, right);
+            }
+
+            int[] merge(int[] _left, int[] _right)
+            {
+                int[] merge_result = new int[_left.Length + _right.Length];
+                int pointerLeft = 0;
+                int pointerRight = 0;
+
+
+                //sortere mens der stadig er noget i begge arrays
+                while (_left.Length != pointerLeft && _right.Length != pointerRight)
+                {
+                    // Hvis vores venstreside er mindre end vores højreside
+                    if(_left[pointerLeft] < _right[pointerRight])
+                    {
+                        merge_result[pointerLeft + pointerRight] = _left[pointerLeft];
+                        pointerLeft++;
+                    }
+                    // Hvis venstre- og højreside er ens
+                    else if (_left[pointerLeft] == _right[pointerRight])
+                    {
+                        merge_result[pointerLeft + pointerRight] = _left[pointerLeft];
+                        pointerLeft++;
+                        merge_result[pointerLeft + pointerRight] = _right[pointerRight];
+                        pointerRight++;
+                    }
+                    // Hvis vesntresiden er større end højresiden
+                    else if (_left[pointerLeft] > _right[pointerRight])
+                    {
+                        merge_result[pointerLeft + pointerRight] = _right[pointerRight];
+                        pointerRight++;
+                    }
+                }
+                
+                //hvis der kun er tal tilbage i et array skal vi sætte det hele efter det vi har i merge result
+                if(_left.Length == pointerLeft)
+                {
+                    while(pointerRight != _right.Length)
+                    {
+                        merge_result[pointerLeft + pointerRight] = _right[pointerRight];
+                        pointerRight++;
+                    }
+                }
+                else if (_right.Length == pointerRight)
+                {
+                    while (pointerLeft != _left.Length)
+                    {
+                        merge_result[pointerLeft + pointerRight] = _left[pointerLeft];
+                        pointerLeft++;
+                    }
+                }
+
+                return merge_result;
+            }
+            
+        }
+
         public static void OnTimer_Tick(object sender, EventArgs e, SortingResult _result, Files _file)
         {
             _file.WriteNewLine($"{_result.time.ElapsedMilliseconds};{_result.checks};{_result.modifications}");
         } 
-
-        public static int Factorial(int n)
-        {
-            if (n == 1) return 1;
-            else
-            {
-                return n * Factorial(n - 1);
-            }
-        }
     }
 }

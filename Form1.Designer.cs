@@ -35,6 +35,7 @@ namespace SortingProgram
             this.btnGenerateNumbers = new MetroFramework.Controls.MetroButton();
             this.txtNumbers = new MetroFramework.Controls.MetroTextBox();
             this.lstSortedNumbers = new System.Windows.Forms.ListBox();
+            this.btnMergeSort = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // lblSortTime
@@ -132,11 +133,26 @@ namespace SortingProgram
             this.lstSortedNumbers.Size = new System.Drawing.Size(120, 275);
             this.lstSortedNumbers.TabIndex = 8;
             // 
+            // btnMergeSort
+            // 
+            this.btnMergeSort.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.btnMergeSort.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.btnMergeSort.Location = new System.Drawing.Point(186, 477);
+            this.btnMergeSort.Name = "btnMergeSort";
+            this.btnMergeSort.Size = new System.Drawing.Size(120, 58);
+            this.btnMergeSort.Style = MetroFramework.MetroColorStyle.Red;
+            this.btnMergeSort.TabIndex = 9;
+            this.btnMergeSort.Text = "MergeSort";
+            this.btnMergeSort.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnMergeSort.UseSelectable = true;
+            this.btnMergeSort.Click += new System.EventHandler(this.btnMergeSort_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 477);
+            this.ClientSize = new System.Drawing.Size(366, 545);
+            this.Controls.Add(this.btnMergeSort);
             this.Controls.Add(this.lstSortedNumbers);
             this.Controls.Add(this.txtNumbers);
             this.Controls.Add(this.btnGenerateNumbers);
@@ -163,6 +179,7 @@ namespace SortingProgram
         private MetroFramework.Controls.MetroButton btnGenerateNumbers;
         private MetroFramework.Controls.MetroTextBox txtNumbers;
         private System.Windows.Forms.ListBox lstSortedNumbers;
+        private MetroFramework.Controls.MetroButton btnMergeSort;
     }
 }
 
