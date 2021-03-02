@@ -21,7 +21,27 @@ namespace SortingProgram
             InitializeComponent();
         }
 
-        private void btnBubbleSort_Click(object sender, EventArgs e)
+        private void btnSort_Click(object sender, EventArgs e)
+        {
+            if (lstGeneratedNumbers.Items.Count == 0)
+            {
+                MetroMessageBox.Show(this.Owner, "No numbers generated. Please generate some numbers before sorting", $"No Generated Numbers - Error");
+                return;
+            }
+
+            switch (cmbSortingType.SelectedItem.ToString())
+            {
+                case "BubbleSort":
+                    BubbleSort();
+                    break;
+
+                case "MergeSort":
+                    MergeSort();
+                    break;
+            }
+        }
+
+        private void BubbleSort()
         {
             // Ryd alle items i listboxen, hvis der er nogen fra sidste klik
             lstSortedNumbers.Items.Clear();
@@ -50,7 +70,7 @@ namespace SortingProgram
             lblSortTime.Text = $"{sorted.time.ElapsedMilliseconds} ms\n{sorted.time.ElapsedMilliseconds / Convert.ToDecimal(1000)} s\nChecks: {sorted.checks.ToString("#,#")}\nModifications: {sorted.modifications.ToString("#,#")}";
         }
 
-        private void btnMergeSort_Click(object sender, EventArgs e)
+        private void MergeSort()
         {
             // Ryd alle items i listboxen, hvis der er nogen fra sidste klik
             lstSortedNumbers.Items.Clear();
@@ -100,6 +120,13 @@ namespace SortingProgram
                 // Vi tilføjer et tilfældige tal til listen mellem 0 og 999
                 lstGeneratedNumbers.Items.Add(rnd.Next(0,999));
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cmbSortingType.SelectedIndex = 0; // Set vores index så vores item er valgt når programmet er startet
+            // Set the tooltip to the checkbox control and the text with some info for the user, so that he/she knows what the checkbox does.
+            tltPerformance.SetToolTip(chkPerformance, "Uses various optimizations\nto improve the performance of\nthe selected sorting algorithm");
         }
     }
 }

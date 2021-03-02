@@ -82,9 +82,9 @@ namespace SortingProgram.Classes
                 if (_unsplitArray.Length <= 1) return _unsplitArray; // Hvis vi modtager et array som har en længde der er mindre end 1 er der ikke noget at sortere
 
                 // Med take funktionen kan vi tage de første elementer og ignorere resten
-                int[] left = _unsplitArray.Take(_unsplitArray.Length / 2).ToArray();
+                int[] left = split(_unsplitArray.Take(_unsplitArray.Length / 2).ToArray());
                 // Med skip funktionen kan vi tage de sidste elementer og ignorere starten
-                int[] right = _unsplitArray.Skip(_unsplitArray.Length / 2).ToArray();
+                int[] right = split(_unsplitArray.Skip(_unsplitArray.Length / 2).ToArray());
 
                 // Vi kalder på merge som sorterer vores array
                 return merge(left, right);
@@ -100,11 +100,13 @@ namespace SortingProgram.Classes
                 //sortere mens der stadig er noget i begge arrays
                 while (_left.Length != pointerLeft && _right.Length != pointerRight)
                 {
+                    result.checks++;
                     // Hvis vores venstreside er mindre end vores højreside
                     if(_left[pointerLeft] < _right[pointerRight])
                     {
                         merge_result[pointerLeft + pointerRight] = _left[pointerLeft];
                         pointerLeft++;
+                        result.modifications++;
                     }
                     // Hvis venstre- og højreside er ens
                     else if (_left[pointerLeft] == _right[pointerRight])
@@ -113,12 +115,14 @@ namespace SortingProgram.Classes
                         pointerLeft++;
                         merge_result[pointerLeft + pointerRight] = _right[pointerRight];
                         pointerRight++;
+                        result.modifications += 2;
                     }
                     // Hvis vesntresiden er større end højresiden
                     else if (_left[pointerLeft] > _right[pointerRight])
                     {
                         merge_result[pointerLeft + pointerRight] = _right[pointerRight];
                         pointerRight++;
+                        result.modifications++;
                     }
                 }
                 
@@ -129,6 +133,7 @@ namespace SortingProgram.Classes
                     {
                         merge_result[pointerLeft + pointerRight] = _right[pointerRight];
                         pointerRight++;
+                        result.modifications++;
                     }
                 }
                 else if (_right.Length == pointerRight)
@@ -137,6 +142,7 @@ namespace SortingProgram.Classes
                     {
                         merge_result[pointerLeft + pointerRight] = _left[pointerLeft];
                         pointerLeft++;
+                        result.modifications++;
                     }
                 }
 

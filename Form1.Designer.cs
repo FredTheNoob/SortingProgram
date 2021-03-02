@@ -30,12 +30,14 @@ namespace SortingProgram
         private void InitializeComponent()
         {
             this.lblSortTime = new System.Windows.Forms.Label();
-            this.btnBubbleSort = new MetroFramework.Controls.MetroButton();
             this.lstGeneratedNumbers = new System.Windows.Forms.ListBox();
             this.btnGenerateNumbers = new MetroFramework.Controls.MetroButton();
             this.txtNumbers = new MetroFramework.Controls.MetroTextBox();
             this.lstSortedNumbers = new System.Windows.Forms.ListBox();
-            this.btnMergeSort = new MetroFramework.Controls.MetroButton();
+            this.btnSort = new MetroFramework.Controls.MetroButton();
+            this.cmbSortingType = new MetroFramework.Controls.MetroComboBox();
+            this.chkPerformance = new MetroFramework.Controls.MetroCheckBox();
+            this.tltPerformance = new MetroFramework.Components.MetroToolTip();
             this.SuspendLayout();
             // 
             // lblSortTime
@@ -47,20 +49,6 @@ namespace SortingProgram
             this.lblSortTime.Name = "lblSortTime";
             this.lblSortTime.Size = new System.Drawing.Size(0, 17);
             this.lblSortTime.TabIndex = 3;
-            // 
-            // btnBubbleSort
-            // 
-            this.btnBubbleSort.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.btnBubbleSort.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.btnBubbleSort.Location = new System.Drawing.Point(186, 413);
-            this.btnBubbleSort.Name = "btnBubbleSort";
-            this.btnBubbleSort.Size = new System.Drawing.Size(120, 58);
-            this.btnBubbleSort.Style = MetroFramework.MetroColorStyle.Red;
-            this.btnBubbleSort.TabIndex = 2;
-            this.btnBubbleSort.Text = "BubbleSort";
-            this.btnBubbleSort.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnBubbleSort.UseSelectable = true;
-            this.btnBubbleSort.Click += new System.EventHandler(this.btnBubbleSort_Click);
             // 
             // lstGeneratedNumbers
             // 
@@ -78,7 +66,7 @@ namespace SortingProgram
             // 
             this.btnGenerateNumbers.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnGenerateNumbers.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.btnGenerateNumbers.Location = new System.Drawing.Point(60, 413);
+            this.btnGenerateNumbers.Location = new System.Drawing.Point(60, 477);
             this.btnGenerateNumbers.Name = "btnGenerateNumbers";
             this.btnGenerateNumbers.Size = new System.Drawing.Size(120, 58);
             this.btnGenerateNumbers.Style = MetroFramework.MetroColorStyle.Red;
@@ -104,7 +92,7 @@ namespace SortingProgram
             this.txtNumbers.CustomButton.Visible = false;
             this.txtNumbers.Lines = new string[] {
         "10"};
-            this.txtNumbers.Location = new System.Drawing.Point(84, 384);
+            this.txtNumbers.Location = new System.Drawing.Point(84, 448);
             this.txtNumbers.MaxLength = 32767;
             this.txtNumbers.Name = "txtNumbers";
             this.txtNumbers.PasswordChar = '\0';
@@ -133,31 +121,65 @@ namespace SortingProgram
             this.lstSortedNumbers.Size = new System.Drawing.Size(120, 275);
             this.lstSortedNumbers.TabIndex = 8;
             // 
-            // btnMergeSort
+            // btnSort
             // 
-            this.btnMergeSort.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.btnMergeSort.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.btnMergeSort.Location = new System.Drawing.Point(186, 477);
-            this.btnMergeSort.Name = "btnMergeSort";
-            this.btnMergeSort.Size = new System.Drawing.Size(120, 58);
-            this.btnMergeSort.Style = MetroFramework.MetroColorStyle.Red;
-            this.btnMergeSort.TabIndex = 9;
-            this.btnMergeSort.Text = "MergeSort";
-            this.btnMergeSort.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnMergeSort.UseSelectable = true;
-            this.btnMergeSort.Click += new System.EventHandler(this.btnMergeSort_Click);
+            this.btnSort.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.btnSort.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.btnSort.Location = new System.Drawing.Point(186, 477);
+            this.btnSort.Name = "btnSort";
+            this.btnSort.Size = new System.Drawing.Size(120, 58);
+            this.btnSort.Style = MetroFramework.MetroColorStyle.Red;
+            this.btnSort.TabIndex = 9;
+            this.btnSort.Text = "Sort";
+            this.btnSort.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnSort.UseSelectable = true;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
+            // 
+            // cmbSortingType
+            // 
+            this.cmbSortingType.FormattingEnabled = true;
+            this.cmbSortingType.ItemHeight = 23;
+            this.cmbSortingType.Items.AddRange(new object[] {
+            "BubbleSort",
+            "MergeSort"});
+            this.cmbSortingType.Location = new System.Drawing.Point(185, 442);
+            this.cmbSortingType.Name = "cmbSortingType";
+            this.cmbSortingType.Size = new System.Drawing.Size(121, 29);
+            this.cmbSortingType.Style = MetroFramework.MetroColorStyle.Red;
+            this.cmbSortingType.TabIndex = 10;
+            this.cmbSortingType.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.cmbSortingType.UseSelectable = true;
+            // 
+            // chkPerformance
+            // 
+            this.chkPerformance.AutoSize = true;
+            this.chkPerformance.Location = new System.Drawing.Point(55, 421);
+            this.chkPerformance.Name = "chkPerformance";
+            this.chkPerformance.Size = new System.Drawing.Size(125, 15);
+            this.chkPerformance.Style = MetroFramework.MetroColorStyle.Red;
+            this.chkPerformance.TabIndex = 11;
+            this.chkPerformance.Text = "Performance Mode";
+            this.chkPerformance.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.chkPerformance.UseSelectable = true;
+            // 
+            // tltPerformance
+            // 
+            this.tltPerformance.Style = MetroFramework.MetroColorStyle.Default;
+            this.tltPerformance.StyleManager = null;
+            this.tltPerformance.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 545);
-            this.Controls.Add(this.btnMergeSort);
+            this.Controls.Add(this.chkPerformance);
+            this.Controls.Add(this.cmbSortingType);
+            this.Controls.Add(this.btnSort);
             this.Controls.Add(this.lstSortedNumbers);
             this.Controls.Add(this.txtNumbers);
             this.Controls.Add(this.btnGenerateNumbers);
             this.Controls.Add(this.lstGeneratedNumbers);
-            this.Controls.Add(this.btnBubbleSort);
             this.Controls.Add(this.lblSortTime);
             this.ForeColor = System.Drawing.Color.White;
             this.MaximizeBox = false;
@@ -167,6 +189,7 @@ namespace SortingProgram
             this.Text = "Sorting Program";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.TransparencyKey = System.Drawing.Color.LightSlateGray;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,12 +197,14 @@ namespace SortingProgram
 
         #endregion
         private System.Windows.Forms.Label lblSortTime;
-        private MetroFramework.Controls.MetroButton btnBubbleSort;
         private System.Windows.Forms.ListBox lstGeneratedNumbers;
         private MetroFramework.Controls.MetroButton btnGenerateNumbers;
         private MetroFramework.Controls.MetroTextBox txtNumbers;
         private System.Windows.Forms.ListBox lstSortedNumbers;
-        private MetroFramework.Controls.MetroButton btnMergeSort;
+        private MetroFramework.Controls.MetroButton btnSort;
+        private MetroFramework.Controls.MetroComboBox cmbSortingType;
+        private MetroFramework.Controls.MetroCheckBox chkPerformance;
+        private MetroFramework.Components.MetroToolTip tltPerformance;
     }
 }
 
