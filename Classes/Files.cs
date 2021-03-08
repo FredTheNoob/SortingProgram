@@ -11,13 +11,13 @@ namespace SortingProgram.Classes
     {
         private StreamWriter sw;
 
-        public Files()
+        public Files(string _fileName)
         {
-            string path = Directory.GetCurrentDirectory() + @"\data.csv";
+            string path = Directory.GetCurrentDirectory() + $@"\{_fileName}.csv";
             
             if (File.Exists(path)) File.Delete(path);
             sw = File.CreateText(path);
-            sw.WriteLine("Time;Checks;Modifications");
+            sw.WriteLine("Time,Checks,Modifications");
         }
         public void WriteNewLine(string _data)
         {

@@ -38,14 +38,16 @@ namespace SortingProgram
             this.cmbSortingType = new MetroFramework.Controls.MetroComboBox();
             this.chkPerformance = new MetroFramework.Controls.MetroCheckBox();
             this.tltPerformance = new MetroFramework.Components.MetroToolTip();
+            this.btnImport = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // lblSortTime
             // 
+            this.lblSortTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSortTime.AutoSize = true;
             this.lblSortTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSortTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.lblSortTime.Location = new System.Drawing.Point(189, 342);
+            this.lblSortTime.Location = new System.Drawing.Point(183, 486);
             this.lblSortTime.Name = "lblSortTime";
             this.lblSortTime.Size = new System.Drawing.Size(0, 17);
             this.lblSortTime.TabIndex = 3;
@@ -66,7 +68,7 @@ namespace SortingProgram
             // 
             this.btnGenerateNumbers.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnGenerateNumbers.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.btnGenerateNumbers.Location = new System.Drawing.Point(60, 477);
+            this.btnGenerateNumbers.Location = new System.Drawing.Point(60, 411);
             this.btnGenerateNumbers.Name = "btnGenerateNumbers";
             this.btnGenerateNumbers.Size = new System.Drawing.Size(120, 58);
             this.btnGenerateNumbers.Style = MetroFramework.MetroColorStyle.Red;
@@ -92,7 +94,7 @@ namespace SortingProgram
             this.txtNumbers.CustomButton.Visible = false;
             this.txtNumbers.Lines = new string[] {
         "10"};
-            this.txtNumbers.Location = new System.Drawing.Point(84, 448);
+            this.txtNumbers.Location = new System.Drawing.Point(84, 382);
             this.txtNumbers.MaxLength = 32767;
             this.txtNumbers.Name = "txtNumbers";
             this.txtNumbers.PasswordChar = '\0';
@@ -125,7 +127,7 @@ namespace SortingProgram
             // 
             this.btnSort.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnSort.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.btnSort.Location = new System.Drawing.Point(186, 477);
+            this.btnSort.Location = new System.Drawing.Point(186, 411);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(120, 58);
             this.btnSort.Style = MetroFramework.MetroColorStyle.Red;
@@ -142,7 +144,7 @@ namespace SortingProgram
             this.cmbSortingType.Items.AddRange(new object[] {
             "BubbleSort",
             "MergeSort"});
-            this.cmbSortingType.Location = new System.Drawing.Point(185, 442);
+            this.cmbSortingType.Location = new System.Drawing.Point(185, 376);
             this.cmbSortingType.Name = "cmbSortingType";
             this.cmbSortingType.Size = new System.Drawing.Size(121, 29);
             this.cmbSortingType.Style = MetroFramework.MetroColorStyle.Red;
@@ -153,7 +155,9 @@ namespace SortingProgram
             // chkPerformance
             // 
             this.chkPerformance.AutoSize = true;
-            this.chkPerformance.Location = new System.Drawing.Point(55, 421);
+            this.chkPerformance.Checked = true;
+            this.chkPerformance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPerformance.Location = new System.Drawing.Point(121, 349);
             this.chkPerformance.Name = "chkPerformance";
             this.chkPerformance.Size = new System.Drawing.Size(125, 15);
             this.chkPerformance.Style = MetroFramework.MetroColorStyle.Red;
@@ -168,11 +172,26 @@ namespace SortingProgram
             this.tltPerformance.StyleManager = null;
             this.tltPerformance.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
+            // btnImport
+            // 
+            this.btnImport.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.btnImport.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.btnImport.Location = new System.Drawing.Point(60, 486);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(120, 58);
+            this.btnImport.Style = MetroFramework.MetroColorStyle.Red;
+            this.btnImport.TabIndex = 12;
+            this.btnImport.Text = "Import Numbers";
+            this.btnImport.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnImport.UseSelectable = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 545);
+            this.ClientSize = new System.Drawing.Size(366, 580);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.chkPerformance);
             this.Controls.Add(this.cmbSortingType);
             this.Controls.Add(this.btnSort);
@@ -205,6 +224,7 @@ namespace SortingProgram
         private MetroFramework.Controls.MetroComboBox cmbSortingType;
         private MetroFramework.Controls.MetroCheckBox chkPerformance;
         private MetroFramework.Components.MetroToolTip tltPerformance;
+        private MetroFramework.Controls.MetroButton btnImport;
     }
 }
 

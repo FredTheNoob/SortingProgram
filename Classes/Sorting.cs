@@ -11,6 +11,8 @@ namespace SortingProgram.Classes
 {
     static class Sorting
     {
+        static System.Timers.Timer timer = new System.Timers.Timer();
+
         // NestedClass fordi dette er en special class lavet til retunering af alle metoderne i Sorting classen
         public class SortingResult
         {
@@ -33,11 +35,9 @@ namespace SortingProgram.Classes
 
         public static SortingResult BubbleSort(int[] _unsortedArr)
         {
-            Files file = new Files();
-
+            Files file = new Files("bubblesort");
             SortingResult result = new SortingResult();
 
-            System.Timers.Timer timer = new System.Timers.Timer();
             timer.Interval = 200;
             timer.Start();
             timer.Elapsed += (sender, e) => OnTimer_Tick(sender, e, result, file);
@@ -64,6 +64,7 @@ namespace SortingProgram.Classes
 
             timer.Stop();
             result.time.Stop();
+            timer.Elapsed -= (sender, e) => OnTimer_Tick(sender, e, result, file);
             file.SaveFile();
             result.sortedArr = _unsortedArr;
             return result;
@@ -71,11 +72,20 @@ namespace SortingProgram.Classes
 
         public static SortingResult MergeSort(int[] _unsortedArr)
         {
+            Files file = new Files("mergesort");
             SortingResult result = new SortingResult();
+
+            timer.Interval = 200;
+            timer.Start();
+            timer.Elapsed += (sender, e) => OnTimer_Tick(sender, e, result, file);
+
             result.sortedArr = split(_unsortedArr);
+
+            timer.Stop();
+            timer.Elapsed -= (sender, e) => OnTimer_Tick(sender, e, result, file);
+            file.SaveFile();
             result.time.Stop();
             return result;
-
 
             int[] split(int[] _unsplitArray)
             {
@@ -153,7 +163,7 @@ namespace SortingProgram.Classes
 
         public static void OnTimer_Tick(object sender, EventArgs e, SortingResult _result, Files _file)
         {
-            _file.WriteNewLine($"{_result.time.ElapsedMilliseconds};{_result.checks};{_result.modifications}");
+            _file.WriteNewLine($"{_result.time.ElapsedMilliseconds},{_result.checks},{_result.modifications}");
         } 
     }
 }
