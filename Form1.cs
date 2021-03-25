@@ -16,7 +16,7 @@ namespace SortingProgram
 {
     public partial class Form1 : MetroForm
     {
-        int[] input;
+        int[] input; // Et globalt array af integers, som vi bruger til vores tilfældige tal, så vi kan tilgå dem overalt i denne klasse
 
         public Form1()
         {
@@ -25,20 +25,23 @@ namespace SortingProgram
 
         private void btnSort_Click(object sender, EventArgs e)
         {
+            // Hvis brugeren forsøger at sortere uden at have tal genereret først
             if (input == null)
             {
+                // Informér brugeren om at man skal generere tal før man sorterer
                 MetroMessageBox.Show(this.Owner, "No numbers generated. Please generate some numbers before sorting", $"No Generated Numbers - Error");
-                return;
+                return; // Returnér fra denne metode
             }
 
+            // Denne switch finder ud af hvad der er valgt i comboboxen
             switch (cmbSortingType.SelectedItem.ToString())
             {
-                case "BubbleSort":
-                    BubbleSort();
+                case "BubbleSort": // Hvis man har valgt at sortere med bubblesort
+                    BubbleSort(); // Kald på bubblesort metoden
                     break;
 
-                case "MergeSort":
-                    MergeSort();
+                case "MergeSort": // Hvis man har valgt at sortere med mergesort
+                    MergeSort(); // Kald på mergesort metoden
                     break;
             }
         }
@@ -48,7 +51,7 @@ namespace SortingProgram
             // Ryd alle items i listboxen, hvis der er nogen fra sidste klik
             lstSortedNumbers.Items.Clear();
 
-            Sorting.SortingResult sorted = Sorting.BubbleSort(input);
+            Sorting.SortingResult sorted = Sorting.BubbleSort(input); // Vi kalder på vores sorteringsbibliotek og får returneret vores sorterede liste
 
             // Fyld vores sorterede listbox op
             if (!chkPerformance.Checked)
@@ -59,7 +62,7 @@ namespace SortingProgram
                 }
             }
 
-            // Hvis statistik
+            // Vis statistik
             lblSortTime.Text = $"{sorted.time.ElapsedMilliseconds} ms\n{sorted.time.ElapsedMilliseconds / Convert.ToDecimal(1000)} s\nChecks: {sorted.checks.ToString("#,#")}\nModifications: {sorted.modifications.ToString("#,#")}";
         }
 
@@ -79,7 +82,7 @@ namespace SortingProgram
                 }
             }
 
-            // Hvis statistik
+            // Vis statistik
             lblSortTime.Text = $"{sorted.time.ElapsedMilliseconds} ms\n{sorted.time.ElapsedMilliseconds / Convert.ToDecimal(1000)} s\nChecks: {sorted.checks.ToString("#,#")}\nModifications: {sorted.modifications.ToString("#,#")}";
         }
 
@@ -120,15 +123,6 @@ namespace SortingProgram
             {
                 MetroMessageBox.Show(this.Owner, "Finished generating numbers", "Performance Mode - Notice");
             }
-        }
-
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Multiselect = false;
-            openFile.DefaultExt = "csv";
-            openFile.Filter = "Comma Seperated Value|*.csv";
-            openFile.ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)

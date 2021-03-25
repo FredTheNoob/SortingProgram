@@ -38,7 +38,6 @@ namespace SortingProgram
             this.cmbSortingType = new MetroFramework.Controls.MetroComboBox();
             this.chkPerformance = new MetroFramework.Controls.MetroCheckBox();
             this.tltPerformance = new MetroFramework.Components.MetroToolTip();
-            this.btnImport = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // lblSortTime
@@ -47,7 +46,7 @@ namespace SortingProgram
             this.lblSortTime.AutoSize = true;
             this.lblSortTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSortTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.lblSortTime.Location = new System.Drawing.Point(183, 486);
+            this.lblSortTime.Location = new System.Drawing.Point(183, 492);
             this.lblSortTime.Name = "lblSortTime";
             this.lblSortTime.Size = new System.Drawing.Size(0, 17);
             this.lblSortTime.TabIndex = 3;
@@ -172,26 +171,11 @@ namespace SortingProgram
             this.tltPerformance.StyleManager = null;
             this.tltPerformance.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
-            // btnImport
-            // 
-            this.btnImport.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.btnImport.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-            this.btnImport.Location = new System.Drawing.Point(60, 486);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(120, 58);
-            this.btnImport.Style = MetroFramework.MetroColorStyle.Red;
-            this.btnImport.TabIndex = 12;
-            this.btnImport.Text = "Import Numbers";
-            this.btnImport.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnImport.UseSelectable = true;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 580);
-            this.Controls.Add(this.btnImport);
+            this.ClientSize = new System.Drawing.Size(366, 592);
             this.Controls.Add(this.chkPerformance);
             this.Controls.Add(this.cmbSortingType);
             this.Controls.Add(this.btnSort);
@@ -224,7 +208,6 @@ namespace SortingProgram
         private MetroFramework.Controls.MetroComboBox cmbSortingType;
         private MetroFramework.Controls.MetroCheckBox chkPerformance;
         private MetroFramework.Components.MetroToolTip tltPerformance;
-        private MetroFramework.Controls.MetroButton btnImport;
     }
 }
 
